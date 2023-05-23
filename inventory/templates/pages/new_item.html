@@ -1,34 +1,29 @@
 {% extends 'main_page.html'%}
 
 {% block content %}
-<div class="container rounded shadow mt-5 bg-light py-2">
+<div class="container rounded bg-light py-2 mt-4">
+    <h2 class="card-title mb-4">Create Item</h2>
     <form action="" method="POST">
         {% csrf_token %}
         <div class="mb-3">
-            <label class="form-label font-weight-bold">Item Name</label>
-            <input type="text" class="form-control" id="item_name" placeholder="Name" name="item_name" required>
+            <label for="" class="form-label">Item Name</label>
+            {{ item_form.item_name }}
         </div>
         <div class="mb-3">
-            <label class="font-weight-bold">Brand</label>
-            <br>
-            <select class="form-select" name="item_brand" required>
-                {% for brand in brands %}
-                    <option id="item_brand" value="{{ brand.id }}">{{ brand.brand_name }}</option>
-                {% endfor %}
-            </select>
+            <label for="" class="form-label">Item Serial Number</label>
+            {{ item_form.item_sn }}
         </div>
         <div class="mb-3">
-            <label class="form-label font-weight-bold">Serial Number(S/N)</label>
-            <input type="text" class="form-control" id="item_sn" placeholder="Serial Number(S/N)" name="item_sn" required>
+            <label for="" class="form-label">Item Brand</label>
+            {{ item_form.item_brand }}
         </div>
         <div class="mb-3">
-            <label class="font-weight-bold">Group</label>
-            <br>
-            <select class="form-select" name="item_group" required>
-                {% for group in groups %}
-                    <option id="item_group" value="{{ group.id }}">{{ group.group_name}}</option>
-                {% endfor %}
-            </select>
+            <label for="" class="form-label">Item Group</label>
+            {{ item_form.item_group }}
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Item State</label>
+            {{ item_form.item_state }}
         </div>
         <button type="submit" class="btn btn-success rounded">Create</button>
     </form>

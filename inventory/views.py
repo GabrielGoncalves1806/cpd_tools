@@ -1,33 +1,34 @@
 from django.shortcuts import render
-from .models import Item, Brand, ItemGroup
-from cpd_inventory.forms import ItemGroupForm, BrandForm
+from .models import Item, Brand, ItemGroup, State
+from cpd_inventory.forms import ItemGroupForm, BrandForm, ItemForm
 
 # Create your views here.
 def main_page(request):
     return render(request, 'main_page.html')
 
 def new_item(request):
-    brands = Brand.objects.all()
-    groups = ItemGroup.objects.all()
+    item_form = ItemForm()
+    context = {
+        'item_form':item_form
+    }
     if request.POST:
-
         item_name = request.POST.get('item_name')
         item_brand = request.POST.get('item_brand')
         item_sn = request.POST.get('item_sn')
         item_group = request.POST.get('item_group')
-        print(item_name)
-        print(item_brand)
-        print(item_sn)
-        print(item_group)
+        item_state = request.POST.get('item_state')
+    
         brand = Brand.objects.get(id=item_brand)
         group = ItemGroup.objects.get(id=item_group)
+        state = State.objects.get(id=item_state)
         Item.objects.create(
             item_group=group,
             item_name=item_name,
             item_brand=brand,
-            item_sn=item_sn
+            item_sn=item_sn,
+            item_state=state
             )
-    return render(request, 'pages/new_item.html',{'brands':brands,'groups':groups})
+    return render(request, 'pages/new_item.html',context=context)
 
 def list_itens(request):
     itens = Item.objects.all()
