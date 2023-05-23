@@ -1,0 +1,21 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+<div class="container rounded shadow mt-2 bg-light py-2">
+    <label class="font-weight-bold">Create new group</label>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ group_form }}
+        <button type="submit" class="btn btn-success rounded py-1">Create Group</button>
+    </form>
+</div>
+
+<div class="container rounded shadow mt-2 bg-light py-2">
+    <label class="font-weight-bold">Create new brand</label>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ brand_form }}
+        <button type="submit" class="btn btn-success rounded py-1">Create Brand</button>
+    </form>
+</div>
+{% endblock %}

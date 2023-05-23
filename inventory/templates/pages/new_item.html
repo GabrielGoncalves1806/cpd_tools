@@ -1,0 +1,36 @@
+{% extends 'main_page.html'%}
+
+{% block content %}
+<div class="container rounded shadow mt-5 bg-light py-2">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label font-weight-bold">Item Name</label>
+            <input type="text" class="form-control" id="item_name" placeholder="Name" name="item_name" required>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Brand</label>
+            <br>
+            <select class="form-select" name="item_brand" required>
+                {% for brand in brands %}
+                    <option id="item_brand" value="{{ brand.id }}">{{ brand.brand_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label font-weight-bold">Serial Number(S/N)</label>
+            <input type="text" class="form-control" id="item_sn" placeholder="Serial Number(S/N)" name="item_sn" required>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Group</label>
+            <br>
+            <select class="form-select" name="item_group" required>
+                {% for group in groups %}
+                    <option id="item_group" value="{{ group.id }}">{{ group.group_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success rounded">Create</button>
+    </form>
+</div>
+{% endblock %}
