@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, ItemGroup, Brand, State
+from .models import Item, ItemGroup, Brand, State, Resale
 
 # Register your models here.
 @admin.register(Item)
@@ -17,3 +17,7 @@ class BrandAdmin(admin.ModelAdmin):
 @admin.register(State)
 class StateAdmin(admin.ModelAdmin):
     list_display = ['state_name']
+
+@admin.register(Resale)
+class ResaleAdmin(admin.ModelAdmin):
+    list_display = ['resale_name']
