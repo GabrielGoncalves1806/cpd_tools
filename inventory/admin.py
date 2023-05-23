@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import Item, ItemGroup, Brand, State, Resale
 
 # Register your models here.
+class ItemInline(admin.TabularInline):
+    model = Item
+    extra = 0
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = ['id', 'item_name', 'item_sn', 'item_brand', 'item_group', 'item_state']
@@ -21,3 +24,4 @@ class StateAdmin(admin.ModelAdmin):
 @admin.register(Resale)
 class ResaleAdmin(admin.ModelAdmin):
     list_display = ['resale_name']
+    inlines = [ItemInline]

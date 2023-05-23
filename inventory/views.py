@@ -12,22 +12,9 @@ def new_item(request):
         'item_form':item_form
     }
     if request.POST:
-        item_name = request.POST.get('item_name')
-        item_brand = request.POST.get('item_brand')
-        item_sn = request.POST.get('item_sn')
-        item_group = request.POST.get('item_group')
-        item_state = request.POST.get('item_state')
-    
-        brand = Brand.objects.get(id=item_brand)
-        group = ItemGroup.objects.get(id=item_group)
-        state = State.objects.get(id=item_state)
-        Item.objects.create(
-            item_group=group,
-            item_name=item_name,
-            item_brand=brand,
-            item_sn=item_sn,
-            item_state=state
-            )
+        item_form = ItemForm(request.POST)
+        if item_form.is_valid():
+            item_form.save()
     return render(request, 'pages/new_item.html',context=context)
 
 def list_itens(request):
