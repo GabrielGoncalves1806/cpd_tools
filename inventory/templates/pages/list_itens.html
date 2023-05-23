@@ -1,7 +1,7 @@
 {% extends 'main_page.html' %}
 
 {% block content %}
-    <div class="container shadow py-4 mb-3">
+    <div class="container rounded shadow py-4 mb-3">
         <form method="GET">
             <div class="input-group input-group-sm">
                 <input class="form-control mb-1" type="search" name="search" placeholder="Search..." value="{{request.GET.search}}">
@@ -17,19 +17,21 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Brand</th>
                         <th>S/N</th>
+                        <th>Brand</th>
                         <th>Group</th>
+                        <th>State</th>
                     </tr>
                 </thead>
             
                 <tbody>
                     {% for item in itens %}
-                    <tr>
+                    <tr class="rounded">
                         <td>{{ item.item_name }}</td>
-                        <td>{{ item.item_brand }}</td>
                         <td>{{ item.item_sn }}</td>
+                        <td>{{ item.item_brand }}</td>                        
                         <td>{{ item.item_group }}</td>
+                        <td>{{ item.item_state}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
