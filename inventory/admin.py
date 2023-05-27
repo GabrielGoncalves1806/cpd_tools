@@ -1,27 +1,31 @@
 from django.contrib import admin
-from .models import Item, ItemGroup, Brand, State, Resale
+from .models import Item, ItemGroup, ItemBrand, ItemCondition, Resale, ItemTransfer, Employee
 
-# Register your models here.
-class ItemInline(admin.TabularInline):
-    model = Item
-    extra = 0
+
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ['id', 'item_name', 'item_sn', 'item_brand', 'item_group', 'item_state']
+    list_display = ['id', 'item_name', 'item_serial', 'item_brand', 'item_group', 'item_condition']
 
 @admin.register(ItemGroup)
 class ItemGroupAdmin(admin.ModelAdmin):
-    list_display = ['id','group_name']
+    list_display = ['id','description']
 
-@admin.register(Brand)
+@admin.register(ItemBrand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ['id','brand_name']
+    list_display = ['id','description']
 
-@admin.register(State)
-class StateAdmin(admin.ModelAdmin):
-    list_display = ['state_name']
+@admin.register(ItemCondition)
+class ItemConditionAdmin(admin.ModelAdmin):
+    list_display = ['id','description']
 
 @admin.register(Resale)
 class ResaleAdmin(admin.ModelAdmin):
-    list_display = ['resale_name']
-    inlines = [ItemInline]
+    list_display = ['id','description']
+    
+@admin.register(ItemTransfer)
+class ItemTransferAdmin(admin.ModelAdmin):
+    list_display = ['id','item','resale','transfer_type','observations','responsible','transfer_date']
+    
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ['id','description']    

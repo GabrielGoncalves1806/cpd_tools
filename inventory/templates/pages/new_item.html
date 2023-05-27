@@ -5,26 +5,7 @@
     <h2 class="card-title mb-4">Create Item</h2>
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="" class="form-label">Item Name</label>
-            {{ item_form.item_name }}
-        </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Item Serial Number</label>
-            {{ item_form.item_sn }}
-        </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Item Brand</label>
-            {{ item_form.item_brand }}
-        </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Item Group</label>
-            {{ item_form.item_group }}
-        </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Item State</label>
-            {{ item_form.item_state }}
-        </div>
+        {{ item_form.as_p }}
         <button type="submit" class="btn btn-success rounded">Create</button>
     </form>
 </div>
